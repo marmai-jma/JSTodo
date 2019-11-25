@@ -16,6 +16,7 @@
         appElement = document.getElementById('app');
         ul = document.getElementById('list-todos');
         displayTodos();
+        ListenToClickOnTodos();
     }
     function displayTodos() {
         todos.forEach(function (todo) {
@@ -24,6 +25,19 @@
             li.innerHTML = '<img src="images/icone-delete.png" >' + todo.texte;
             //Récupère une référence à la liste
             ul.appendChild(li);
+        });
+    }
+    //
+    function ListenToClickOnTodos() {
+        // récupère la liste de tous les <li>
+        var listItems = document.querySelectorAll('.list-group-item');
+        //Itère sur la liste...
+        listItems.forEach(function (listItem) {
+            //Et ajoute un "click" listerenr sur chaque <li>
+            listItem.addEventListener('click', function () {
+                // ajoute la classe CSS "done" aux classes existantes
+                listItem.classList.toggle('done');
+            });
         });
     }
     //constructeur d'un item todo - un état à true signifie que la tache est terminee
