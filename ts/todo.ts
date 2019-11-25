@@ -20,6 +20,7 @@ var todos = [
   appElement = document.getElementById('app');
   ul = document.getElementById('list-todos');
   displayTodos();
+  ListenToSubmitOnForm()
 
  }
 
@@ -53,6 +54,24 @@ var todos = [
           displayTodos();
       });
   });
+}
+
+function ListenToSubmitOnForm() {
+  var form = document.getElementById('newTodoForm');
+  form.addEventListener('submit',function(event){
+    event.preventDefault(); //empeche le rafraichissement de page de submit
+    //Crée un Todo avec le texte saisi dans le champ 
+    var input = document.querySelector('input[type=text]') as HTMLInputElement;
+    var text = input.value;
+    input.value ='';
+    console.log('text',text)
+    if (text.trim() ==='')  {//rabote la chaine à droite et à gauche pour enlever les espaces
+        return alert('Vous devez saisir un todo');
+    }
+    todos.push(new Todo(text,false)); //Ajoute un nouveau todo à la liste
+    displayTodos(); //Rafraichit les todos dans la vue 
+
+  })
 }
 
  //constructeur d'un item todo - un état à true signifie que la tache est terminee
