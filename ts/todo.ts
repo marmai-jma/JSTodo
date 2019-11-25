@@ -20,10 +20,11 @@ var todos = [
   appElement = document.getElementById('app');
   ul = document.getElementById('list-todos');
   displayTodos();
-  ListenToClickOnTodos();
+
  }
 
  function displayTodos(){
+   ul.innerHTML='';
    todos.forEach(function(todo){
     var li = document.createElement('li');
     
@@ -33,21 +34,26 @@ var todos = [
   //Récupère une référence à la liste
     ul.appendChild(li);
    })
+   ListenToClickOnTodos();
  }
 
  //
- function ListenToClickOnTodos(){
-   // récupère la liste de tous les <li>
-   var listItems = document.querySelectorAll('.list-group-item');
-   //Itère sur la liste...
-   listItems.forEach(function(listItem){
-     //Et ajoute un "click" listerenr sur chaque <li>
-     listItem.addEventListener('click',function(){
-       // ajoute la classe CSS "done" aux classes existantes
-       listItem.classList.toggle('done');
-     });
-   }); 
- }
+ function ListenToClickOnTodos() {
+  // récupère la liste de tous les <li>
+  var listItems = document.querySelectorAll('.list-group-item');
+  //Itère sur la liste...
+  listItems.forEach(function (listItem, index) {
+      //Et ajoute un "click" listerenr sur chaque <li>
+      listItem.addEventListener('click', function () {
+          // ajoute la classe CSS "done" aux classes existantes
+          //listItem.classList.toggle('done');
+          //Mettre à jour le modele
+          todos[index].etat = !todos[index].etat;
+          //console.log('toto');
+          displayTodos();
+      });
+  });
+}
 
  //constructeur d'un item todo - un état à true signifie que la tache est terminee
  function Todo (texte, etat) { 
