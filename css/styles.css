@@ -1,0 +1,5 @@
+/* Mettre vos CSS ici */
+.done{
+    background: rgb(144,151,243);
+    text-decoration: line-through;
+}

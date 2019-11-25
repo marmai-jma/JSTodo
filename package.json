@@ -1,0 +1,19 @@
+{
+  "name": "jstodos-starter",
+  "version": "1.0.0",
+  "description": "Fichiers de démarrage pour les exercices de la formation \"Révisions JavaScript\".",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "live-server",
+    "tsc":"tsc --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "live-server": "^1.2.1",
+    "tsc": "^1.20150623.0"
+  }
+}
