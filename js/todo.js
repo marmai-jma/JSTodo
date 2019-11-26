@@ -9,6 +9,7 @@
         new Todo("essai", false),
         new Todo("fini", true),
     ];
+    var currentFilter = 'ALL'; //'ALL', 'DONE', 'NOT_DONE'
     //attend que la page soit complétement chargée pour démarer l'application. 
     window.addEventListener('load', startApp);
     function startApp() {
@@ -17,6 +18,7 @@
         ul = document.getElementById('list-todos');
         displayTodos();
         ListenToSubmitOnForm();
+        refreshFilters();
     }
     function displayTodos() {
         ul.innerHTML = '';
@@ -28,6 +30,21 @@
             ul.appendChild(li);
         });
         ListenToClickOnTodos();
+    }
+    // fonction qui met en bleu le bouton selectionné (Tous, Fait, Pas fait)
+    // la fonction qui ecoute le clic sur navLinks ListenToClicksOnFilter n'est pas developpée.
+    // Pour tester, il faut changer la valeur de currentFilter dans le typeScript
+    function refreshFilters() {
+        var navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(function (navLink) {
+            var filter = navLink.getAttribute('data-filter');
+            if (filter === currentFilter) {
+                navLink.classList.add('active');
+            }
+            else {
+                navLink.classList.remove('active');
+            }
+        });
     }
     //
     function ListenToClickOnTodos() {
